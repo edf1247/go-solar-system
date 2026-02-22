@@ -19,7 +19,7 @@ func main() {
 
   for !rl.WindowShouldClose() {
     rl.BeginDrawing()
-    rl.ClearBackground(BLACK)
+    rl.ClearBackground(colors.BLACK)
     
     if !camInit {
         mainCamera = camera.InitCamera()
@@ -28,7 +28,7 @@ func main() {
     rl.UpdateCamera(&mainCamera, rl.CameraFree)
     rl.BeginMode3D(mainCamera)
     
-    camera.moveCamera(&mainCamera)
+    camera.MoveCamera(&mainCamera)
 
     rl.DrawCube(rl.Vector3{0, 0, 0}, 2.0, 2.0, 2.0, colors.WHITE)
     rl.DrawCubeWires(rl.Vector3{0, 0, 0}, 2.0, 2.0, 2.0, colors.MAROON)

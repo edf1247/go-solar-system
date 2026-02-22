@@ -1,4 +1,4 @@
-package main
+package camera
 
 import rl "github.com/gen2brain/raylib-go/raylib"
 
@@ -17,7 +17,7 @@ func InitCamera() rl.Camera3D{
     return camera
 }
 
-func moveCamera(mainCam *rl.Camera3D) {
+func MoveCamera(mainCam *rl.Camera3D) {
     if (rl.IsKeyDown(KEY_W)) {
         rl.CameraMoveForward(mainCam, (SPEED * rl.GetFrameTime()), 0)
     } //check if w is pressed
