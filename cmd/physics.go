@@ -17,7 +17,6 @@ type Mesh struct {
     rings int32
     slices int32
     color rl.Color
-    wireColor rl.Color
 }
 
 type Body struct {
@@ -33,17 +32,17 @@ const (
     slices = 15
 )
 
-var (
-    wireColor = rl.Red
-)
-
 func (planet* Body) Render() {
     rl.DrawSphereEx(planet.rb.centerPos, planet.mesh.radius, planet.mesh.rings, planet.mesh.slices, planet.mesh.color)
-    rl.DrawSphereWires(planet.rb.centerPos, planet.mesh.radius, planet.mesh.rings, planet.mesh.slices, planet.mesh.wireColor)
+    
+    factor := 0.75
+    pColor := planet.mesh.color
+    wireColor := rl.Color{uint8(float64(pColor.R) * factor * 1.1), uint8(float64(pColor.G) * factor), uint8(float64(pColor.B) * factor * 1.2), 255}
+    rl.DrawSphereWires(planet.rb.centerPos, planet.mesh.radius, planet.mesh.rings, planet.mesh.slices, wireColor)
 }
 
 func CreatePlanet(centerPos rl.Vector3, radius float32, mass float32, color rl.Color, tag string, initialVelocity rl.Vector3) (Body) {
-    temp := Body{Mesh{radius, rings, slices, color, wireColor}, RigidBody{mass, initialVelocity, initialVelocity, centerPos}, tag}
+    temp := Body{Mesh{radius, rings, slices, color}, RigidBody{mass, initialVelocity, initialVelocity, centerPos}, tag}
     return temp
 }
 
