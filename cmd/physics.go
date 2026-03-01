@@ -66,6 +66,14 @@ func UniversalGravitation(sm *SceneManager) {
 func UpdatePositions(sm *SceneManager) {
     delta := rl.GetFrameTime()
     for _, curBody := range *sm.objects {
-        curBody.rb.centerPos = rl.Vector3Add(curBody.rb.centerPos, rl.Vector3Scale(curBody.rb.currentVelocity, delta))
+        collision := false
+        for _, otherBody := range *sm.objects {
+            if otherBody != curBody && rl.CheckCollisionSpheres(curBody.rb.centerPos, curBody.mesh.radius, otherBody.rb.centerPos, otherBody.mesh.radius) {
+                collision = true
+            }
+        }
+        if !collision {
+            curBody.rb.centerPos = rl.Vector3Add(curBody.rb.centerPos, rl.Vector3Scale(curBody.rb.currentVelocity, delta))
+        }
     }
 }

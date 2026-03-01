@@ -1,7 +1,6 @@
 package main
 
 import (
-    camera "github.com/edf1247/go-engine/internal/camera"
     rl "github.com/gen2brain/raylib-go/raylib"
 )
 
@@ -28,7 +27,7 @@ func main() {
     rl.DrawFPS(10.0, 10.0)
 
     if !start {
-        mainCamera = camera.InitCamera()
+        mainCamera = InitCamera()
 
         radius := float32(10.0)
         mass := float32(1.0)
@@ -46,8 +45,6 @@ func main() {
     rl.UpdateCamera(&mainCamera, rl.CameraFree)
     
     rl.BeginMode3D(mainCamera)
-    
-    //camera.MoveCamera(&mainCamera)
     
     sm.Render()
 
