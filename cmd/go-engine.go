@@ -4,8 +4,8 @@ import (
     rl "github.com/gen2brain/raylib-go/raylib"
 )
 
-const WIDTH = 1920
-const HEIGHT = 1080
+const WIDTH = 2560
+const HEIGHT = 1600
 
 
 func main() {
